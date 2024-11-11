@@ -154,7 +154,7 @@ GuiMenu::GuiMenu(Window *window, bool animate) : GuiComponent(window), mMenu(win
 	
 	if (isFullUI)
 	{
-#if BATOCERA
+#if defined(BATOCERA) || defined(ROCKNIX)
 		addEntry(_("GAME SETTINGS").c_str(), true, [this] { openGamesSettings(); }, "iconGames");
 		addEntry(GuiControllersSettings::getControllersSettingsLabel(), true, [window] { GuiControllersSettings::openControllersSettings(window); }, "iconControllers");
 		addEntry(_("USER INTERFACE SETTINGS").c_str(), true, [this] { openUISettings(); }, "iconUI");
@@ -730,7 +730,7 @@ void GuiMenu::openDeveloperSettings()
 	s->addSwitch(_("SHOW FRAMERATE"), _("Also turns on the emulator's native FPS counter, if available."), "DrawFramerate", true, nullptr);
 	s->addSwitch(_("VSYNC"), "VSync", true, [] { Renderer::setSwapInterval(); });
 
-#ifdef BATOCERA
+#if defined(BATOCERA) || defined(ROCKNIX)
 	// overscan
 	auto overscan_enabled = std::make_shared<SwitchComponent>(mWindow);
 	overscan_enabled->setState(Settings::getInstance()->getBool("Overscan"));
@@ -1110,7 +1110,7 @@ void GuiMenu::openDeveloperSettings()
 	}
 //#endif
 
-#if defined(BATOCERA)
+#if defined(BATOCERA) || defined(ROCKNIX)
 	// PS3 controller enable
 	auto enable_ps3 = std::make_shared<SwitchComponent>(mWindow);
 	enable_ps3->setState(SystemConf::getInstance()->getBool("controllers.ps3.enabled"));
@@ -1470,7 +1470,7 @@ void GuiMenu::openSystemSettings()
 	}
 #endif
 
-#ifdef BATOCERA
+#if defined(BATOCERA) || defined(ROCKNIX)
 	s->addGroup(_("HARDWARE"));
 #endif
 
@@ -1844,7 +1844,7 @@ void GuiMenu::openSystemSettings()
         s->addEntry(_("MULTISCREENS"), true, [this] { openMultiScreensSettings(); });
 #endif
 
-#ifdef BATOCERA
+#if defined(BATOCERA) || defined(ROCKNIX)
 #ifdef X86_64
 	int red, green, blue;
 	if (ApiSystem::getInstance()->getLED(red, green, blue)) {
@@ -1906,7 +1906,7 @@ void GuiMenu::openSystemSettings()
 #endif
 #endif
 
-#ifdef BATOCERA
+#if defined(BATOCERA)
 	s->addGroup(_("STORAGE"));
 
 	// Storage device
@@ -2739,7 +2739,7 @@ void GuiMenu::openGamesSettings()
 		auto sets = GuiMenu::getDecorationsSets(ViewController::get()->getState().getSystem());
 		if (sets.size() > 0)
 		{
-#ifdef BATOCERA
+#if defined(BATOCERA) || defined(ROCKNIX)
 			s->addEntry(_("DECORATIONS"), true, [this, sets]
 			{
 				GuiSettings *decorations_window = new GuiSettings(mWindow, _("DECORATIONS").c_str());
@@ -4433,7 +4433,7 @@ void GuiMenu::popSpecificConfigurationGui(Window* mWindow, std::string title, st
 		auto sets = GuiMenu::getDecorationsSets(systemData);
 		if (sets.size() > 0)
 		{
-#ifdef BATOCERA
+#if defined(BATOCERA) || defined(ROCKNIX)
 			systemConfiguration->addEntry(_("DECORATIONS"), true, [mWindow, configName, systemData, sets]
 			{
 				GuiSettings* decorations_window = new GuiSettings(mWindow, _("DECORATIONS").c_str());
