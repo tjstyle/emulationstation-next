@@ -147,9 +147,6 @@ GuiScraperSettings::GuiScraperSettings(Window* window) : GuiSettings(window, _("
 	if (scrap->isMediaSupported(Scraper::ScraperMediaSource::FanArt))
 		addSwitch(_("FANART"), "ScrapeFanart", true);
 
-	if (scrap->isMediaSupported(Scraper::ScraperMediaSource::Bezel_16_9))
-		addSwitch(_("BEZEL (16:9)"), "ScrapeBezel", true);
-
 	if (scrap->isMediaSupported(Scraper::ScraperMediaSource::BoxBack))
 		addSwitch(_("BOX BACKSIDE"), "ScrapeBoxBack", true);
 
