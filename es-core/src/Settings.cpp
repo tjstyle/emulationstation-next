@@ -387,6 +387,8 @@ void Settings::setDefaults()
 
 	mFloatMap["GunMoveTolerence"] = 2.5;
 
+	mBoolMap["DisableTouchscreen"] = false;
+
 	mDefaultBoolMap = mBoolMap;
 	mDefaultIntMap = mIntMap;
 	mDefaultFloatMap = mFloatMap;
