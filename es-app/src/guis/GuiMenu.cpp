@@ -3408,7 +3408,7 @@ void GuiMenu::openGamesSettings()
 		auto sets = GuiMenu::getDecorationsSets(ViewController::get()->getState().getSystem());
 		if (sets.size() > 0)
 		{
-#if defined(BATOCERA) || defined(ROCKNIX)
+#if defined(BATOCERA)
 			s->addEntry(_("DECORATIONS"), true, [this, sets]
 			{
 				GuiSettings *decorations_window = new GuiSettings(mWindow, _("DECORATIONS").c_str());
@@ -5377,7 +5377,7 @@ void GuiMenu::popSpecificConfigurationGui(Window* mWindow, std::string title, st
 		auto sets = GuiMenu::getDecorationsSets(systemData);
 		if (sets.size() > 0)
 		{
-#if defined(BATOCERA) || defined(ROCKNIX)
+#if defined(BATOCERA)
 			systemConfiguration->addEntry(_("DECORATIONS"), true, [mWindow, configName, systemData, sets]
 			{
 				GuiSettings* decorations_window = new GuiSettings(mWindow, _("DECORATIONS").c_str());
